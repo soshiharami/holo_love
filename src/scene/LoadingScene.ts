@@ -25,6 +25,8 @@ export class LoadingScene extends Phaser.Scene {
         this.load.image('street', 'assets/street.png');
         this.load.image('school', 'assets/school.jpg');
         this.load.image('robot', 'assets/robot.png');
+        this.load.plugin('rexroundrectangleplugin', 'https://raw.githubusercontent.com/rexrainbow/    phaser3-rex-notes/master/dist/rexroundrectangleplugin.min.js', true);
+
 
         // アセットのロードが完了したらTitleSceneに遷移
         this.load.on('complete', () => {

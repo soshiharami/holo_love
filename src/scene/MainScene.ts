@@ -13,7 +13,9 @@ export class MainScene extends Phaser.Scene {
         // フォントの設定
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             fontFamily: '"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
-            fontSize: '24px'
+            fontSize: '24px',
+            stroke: "#000",
+            strokeThickness: 2
         };
 
         // DialogBoxのコンフィグ
@@ -33,8 +35,8 @@ export class MainScene extends Phaser.Scene {
         const dialogBox = new DialogBox(this, dialogBoxConfig);
 
         // テキストの設定
-        dialogBox.setText('クリックでエンディングへ ▼');
-        dialogBox.setActorNameText('NAME');
+        dialogBox.setText('C-Styleは事業課題を洗い出し、最高のプロダクトを開発する「設計者集団」です。事業開発者・UI/UXデザイナー・web・モバイルエンジニア各分野のプロフェッショナルがお客様と一緒に伴走いたします。▼');
+        dialogBox.setActorNameText('テスト太郎');
 
         // DialogBoxの表示
         this.add.existing(dialogBox);
