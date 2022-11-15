@@ -7,8 +7,7 @@ export class LoadingScene extends Phaser.Scene {
     // preload()はシーンが呼び出されたら実行される
     preload() {
         // ロゴ画像だけは最初から表示したいので予めロード
-        // Phaser3のロゴをlabs.phaser.ioから取得しているので、もし公開する際はこの部分は消してください
-        this.load.image('logo', '//labs.phaser.io/assets/sprites/phaser3-logo.png');
+        this.load.image('logo', 'assets/holo_logo.png');
     }
 
     // create()はpreload内のアセットのロードが完了したら実行される
@@ -17,13 +16,14 @@ export class LoadingScene extends Phaser.Scene {
         const { width, height } = this.game.canvas;
 
         // ロゴ画像を中央に表示
-        this.add.image(width / 2, height / 2, 'logo');
+        this.add.image(width / 2, height / 2 - 20, 'logo');
 
         // テキストをロゴの下に表示
         this.add.text(width / 2, height / 2 + 60, 'Loading...').setOrigin(0.5);
 
         // アセットをロード（一度ロードしたアセットは他のシーンでも使用可）
         this.load.image('street', 'assets/street.png');
+        this.load.image('school', 'assets/school.jpg');
         this.load.image('robot', 'assets/robot.png');
 
         // アセットのロードが完了したらTitleSceneに遷移

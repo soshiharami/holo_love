@@ -8,7 +8,7 @@ export class MainScene extends Phaser.Scene {
     create() {
         const { width, height } = this.game.canvas;
 
-        this.add.image(width / 2, height / 2, 'street');
+        this.add.image(width / 2, height / 2, 'school');
 
         // フォントの設定
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
