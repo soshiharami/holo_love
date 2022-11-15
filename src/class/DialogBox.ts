@@ -1,3 +1,6 @@
+import RoundRectangleCanvas from 'phaser3-rex-plugins/plugins/roundrectanglecanvas.js';
+import RoundRectangle from 'phaser3-rex-plugins/plugins/roundrectangle.js';
+
 export type DialogBoxConfig = {
     x: number,
     y: number,
@@ -10,10 +13,10 @@ export type DialogBoxConfig = {
 
 // Phaser.GameObjects.Containerを継承してDialogBoxを作成
 export class DialogBox extends Phaser.GameObjects.Container {
-    private box: Phaser.GameObjects.Rectangle;
+    private box: RoundRectangleCanvas;
     private text: Phaser.GameObjects.Text;
 
-    private actorNameBox: Phaser.GameObjects.Rectangle;
+    private actorNameBox: RoundRectangle;
     private actorNameText: Phaser.GameObjects.Text;
 
     private padding: number;
@@ -23,7 +26,7 @@ export class DialogBox extends Phaser.GameObjects.Container {
         super(scene, 0, 0);
 
         // 白枠付きの黒いRectangleを作成
-        this.box = new Phaser.GameObjects.Rectangle(this.scene, x, y, width, height, 0x000000).setStrokeStyle(1, 0xffffff);
+        this.box = new RoundRectangleCanvas(this.scene, x, y, width, height, 8, 0xeeeeee, 0x74CFE2, 4, 0xffffff, false).setAlpha(0.8);
         this.add(this.box);  // Containerへの追加
 
         // wordWrap（折り返し設定）を追加した会話テキスト用のTextStyleを作成
@@ -37,7 +40,7 @@ export class DialogBox extends Phaser.GameObjects.Container {
         this.add(this.text);  // Containerへの追加
 
         // 高さ40の白枠付きの黒いRectangleを作成
-        this.actorNameBox = new Phaser.GameObjects.Rectangle(this.scene, x - width / 2, y - height / 2 - margin, 0, 40, 0x000000).setStrokeStyle(1, 0xffffff);
+        this.actorNameBox = new RoundRectangle(this.scene, x - width / 2, y - height / 2 - margin, 0, 40, 20, 0xffffff, 0.8).setStrokeStyle(2, 0x74CFE2);
         this.actorNameBox.setOrigin(0, 1);  // 原点を左下に設定
         this.actorNameBox.setVisible(false);  // 初期状態では非表示
         this.add(this.actorNameBox);  // Containerへの追加
