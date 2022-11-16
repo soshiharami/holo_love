@@ -1,15 +1,26 @@
 import { Stylies } from "./Stylies";
 
 export class Character {
-    constructor(id: number, name: string, color: string, style: Stylies) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
-        this.style = style;
+    constructor(
+        private _id: number,
+        private _name: string,
+        private _color: number,
+        private _stylies: Stylies,
+    ) { }
+
+    get id(): number {
+        return this._id
     }
 
-    public id: number;
-    public name: string;
-    public color: string;
-    public style: Stylies;
+    get name(): string {
+        return this._name
+    }
+
+    get color(): number {
+        return this._color
+    }
+
+    get stylies(): Stylies {
+        return this._stylies
+    }
 }

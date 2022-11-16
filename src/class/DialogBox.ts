@@ -26,7 +26,7 @@ export class DialogBox extends Phaser.GameObjects.Container {
         super(scene, 0, 0);
 
         // 白枠付きの黒いRectangleを作成
-        this.box = new RoundRectangleCanvas(this.scene, x, y, width, height, 8, 0xeeeeee, 0x74CFE2, 4, 0xffffff, false).setAlpha(0.8);
+        this.box = new RoundRectangleCanvas(this.scene, x, y, width, height, 8, 0xeeeeee, 0x74CFE2, 4, 0xffffff, false).setAlpha(0.8).setDepth(1);
         this.add(this.box);  // Containerへの追加
 
         // wordWrap（折り返し設定）を追加した会話テキスト用のTextStyleを作成
@@ -56,7 +56,9 @@ export class DialogBox extends Phaser.GameObjects.Container {
 
     // 会話テキストのセット
     public setText(text: string) {
-        this.text.setText(text);
+        this.text.setText(text).setDepth(1);
+        this.box.setDepth(10)
+        this.add(this.box)
     }
 
     // 名前テキストのセット
