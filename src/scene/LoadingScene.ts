@@ -27,6 +27,7 @@ export class LoadingScene extends Phaser.Scene {
         this.load.image('korone', 'assets/korone.png');
         this.load.image('school', 'assets/school.jpg');
         this.load.image('robot', 'assets/robot.png');
+        this.load.image('park', 'assets/park.jpeg')
         this.load.plugin('rexroundrectangleplugin', 'https://raw.githubusercontent.com/rexrainbow/    phaser3-rex-notes/master/dist/rexroundrectangleplugin.min.js', true);
 
 

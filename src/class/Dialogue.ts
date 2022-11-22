@@ -1,3 +1,4 @@
+import { Scene } from "./Scene";
 import { Character } from "./Character";
 import { style } from "./Stylies";
 
@@ -9,6 +10,7 @@ export class NomalDialogue {
         private _auther: Character,
         private _style: style | undefined,
         private _nextDialogueId: number | null,
+        private _nextSceneId?: number,
     ) { }
 
     get id(): number {
@@ -29,6 +31,14 @@ export class NomalDialogue {
 
     get nextDialogueId(): number | null {
         return this._nextDialogueId
+    }
+
+    get nextSceneId(): number | undefined {
+        return this._nextSceneId
+    }
+
+    getNextScene(scenies: Scene[]): Scene | undefined {
+        return scenies.find(scene => scene.id == this._nextSceneId)
     }
 
     getNextDialogue(dialoguies: (NomalDialogue | SelectsDialogue)[]): NomalDialogue | SelectsDialogue | undefined {

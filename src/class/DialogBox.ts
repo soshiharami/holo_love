@@ -15,13 +15,15 @@ export type DialogBoxConfig = {
 export class DialogBox extends Phaser.GameObjects.Container {
     private box: RoundRectangleCanvas;
     private text: Phaser.GameObjects.Text;
+    private tmpText: string;
 
     private actorNameBox: RoundRectangle;
     private actorNameText: Phaser.GameObjects.Text;
 
     private padding: number;
 
-    constructor(public scene: Phaser.Scene, { x, y, width, height, padding = 10, margin = 10, textStyle = {} }: DialogBoxConfig) {
+    constructor(
+        public scene: Phaser.Scene, { x, y, width, height, padding = 10, margin = 10, textStyle = {} }: DialogBoxConfig) {
         // Phaser.GameObjects.Containerのコンストラクタ
         super(scene, 0, 0);
 
@@ -38,6 +40,7 @@ export class DialogBox extends Phaser.GameObjects.Container {
         // 会話テキスト用のTextを作成
         this.text = new Phaser.GameObjects.Text(this.scene, x - width / 2 + padding, y - height / 2 + padding, '', dialogBoxTextStyle);
         this.add(this.text);  // Containerへの追加
+        this.tmpText = ""
 
         // 高さ40の白枠付きの黒いRectangleを作成
         this.actorNameBox = new RoundRectangle(this.scene, x - width / 2, y - height / 2 - margin, 0, 40, 20, 0xffffff, 0.8).setStrokeStyle(2, 0x74CFE2);
@@ -52,13 +55,30 @@ export class DialogBox extends Phaser.GameObjects.Container {
         this.add(this.actorNameText);  // Containerへの追加
 
         this.padding = padding;
+
+        const dialogSpeed = 3
+        this.scene.time.addEvent({
+            delay: 150 - (dialogSpeed * 30),
+            callback: this._animateText,
+            callbackScope: this,
+            loop: true
+        });
     }
 
     // 会話テキストのセット
     public setText(text: string) {
-        this.text.setText(text).setDepth(1);
+        this.text.setText("")
+        this.tmpText = text
         this.box.setDepth(10)
         this.add(this.box)
+
+    }
+
+    private _animateText = () => {
+        if (this.tmpText) {
+            this.text.setText(this.text.text + this.tmpText[0])
+            this.tmpText = this.tmpText.slice(1)
+        }
     }
 
     // 名前テキストのセット
