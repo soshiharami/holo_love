@@ -22,16 +22,15 @@ export class LoadingScene extends Phaser.Scene {
         this.add.text(width / 2, height / 2 + 60, 'Loading...').setOrigin(0.5);
 
         // アセットをロード（一度ロードしたアセットは他のシーンでも使用可）
-        this.load.image('street', 'assets/street.png');
         this.load.image('okayu', 'assets/okayu.png');
         this.load.image('korone', 'assets/korone.png');
+        this.load.image('lamy', 'assets/lamy.png');
         this.load.image('school', 'assets/school.jpg');
-        this.load.image('robot', 'assets/robot.png');
         this.load.image('park', 'assets/park.jpeg')
         this.load.image('home', 'assets/home.jpeg')
         this.load.image('school-gym', 'assets/school-gym.jpeg')
         this.load.image('school-enter', 'assets/school-enter.jpeg')
-        this.load.plugin('rexroundrectangleplugin', 'https://raw.githubusercontent.com/rexrainbow/    phaser3-rex-notes/master/dist/rexroundrectangleplugin.min.js', true);
+        this.load.image('train', 'assets/train.jpg')
 
 
         // アセットのロードが完了したらTitleSceneに遷移

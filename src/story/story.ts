@@ -17,8 +17,8 @@ export class Story {
         n: new Character(1, "", 0x000000, new Stylies({ image: "", sound: "" })),
         m: new Character(2, "さくらみこ", 0x000000, new Stylies({ image: "", sound: "" })),
         s: new Character(3, "", 0x000000, new Stylies({ image: "", sound: "" })),
-        r: new Character(4, "雪花ラミィ", 0x000000, new Stylies({ image: "", sound: "" })),
-        k: new Character(5, "戌神ころね", 0x000000, new Stylies({ image: "", sound: "" })),
+        r: new Character(4, "雪花ラミィ", 0x000000, new Stylies({ image: "lamy", sound: "" })),
+        k: new Character(5, "戌神ころね", 0x000000, new Stylies({ image: "korone", sound: "" })),
         h: new Character(6, "博衣こより", 0x000000, new Stylies({ image: "", sound: "" })),
     }
 
