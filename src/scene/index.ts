@@ -1,6 +1,6 @@
-import { LoadingScene } from './LoadingScene';
-import { TitleScene } from './TitleScene';
-import { MainScene } from './MainScene';
-import { EndingScene } from './EndingScene';
+import { LoadingScene } from "./LoadingScene.ts";
+import { TitleScene } from "./TitleScene.ts";
+import { MainScene } from "./MainScene.ts";
+import { EndingScene } from "./EndingScene.ts";
 
 export const Scenes = [LoadingScene, TitleScene, MainScene, EndingScene];
