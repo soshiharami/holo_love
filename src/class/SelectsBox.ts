@@ -78,7 +78,7 @@ export class SelectsBox extends Phaser.GameObjects.Container {
       dialogBoxTextStyle,
     );
 
-    [this.text1, this.text2, this.text3].forEach((v, i) => {
+    [this.text1, this.text2, this.text3].forEach((v) => {
       v.setInteractive({ useHandCursor: true }).on("pointerover", () => {
         v.setColor("#555");
       });

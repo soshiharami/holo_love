@@ -6,10 +6,19 @@ export class Character {
     private _name: string,
     private _color: number,
     private _stylies: Stylies,
+    private _score: number = 0,
   ) {}
 
   get id(): number {
     return this._id;
+  }
+
+  get score(): number {
+    return this._score;
+  }
+
+  set score(score: number) {
+    this._score = score;
   }
 
   get name(): string {

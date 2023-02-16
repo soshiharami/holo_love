@@ -83,7 +83,9 @@ export class MainScene extends Phaser.Scene {
       return nomal.kind === "selects";
     };
 
-    const zone = this.add.zone(width / 2, height / 2, width, height);
+    const zone = this.add
+      .zone(width / 2, height / 2, width, height)
+      .setDepth(1);
     zone.setInteractive({
       useHandCursor: true,
     });
@@ -95,7 +97,11 @@ export class MainScene extends Phaser.Scene {
         nowDialogue = nextDialogue;
         if (isNomal(nowDialogue)) {
           dialogBox.setText(nowDialogue.text);
-          dialogBox.setActorNameText(nowDialogue.auther.name);
+          if (nowDialogue.auther.name != "") {
+            dialogBox.setActorNameText(nowDialogue.auther.name);
+          } else {
+            dialogBox.clearActorNameText;
+          }
           nowRigft.destroy();
           nowRigft = this.add.image(
             width - 200,
@@ -137,34 +143,48 @@ export class MainScene extends Phaser.Scene {
     };
 
     zone.on("pointerdown", () => {
-      if (isNomal(nowDialogue)) {
-        const nextDialogue = nowDialogue.getNextDialogue(dialoguies);
-        rendering(nextDialogue);
-        if (nextDialogue) {
-          nowDialogue = nextDialogue;
+      console.log("b");
+      if (dialogBox.getIsRead()) {
+        if (isNomal(nowDialogue)) {
+          const nextDialogue = nowDialogue.getNextDialogue(dialoguies);
+          rendering(nextDialogue);
+          if (nextDialogue) {
+            nowDialogue = nextDialogue;
+          }
         }
-      }
 
-      if (isSelects(nowDialogue)) {
-        const selectsBox = new SelectsBox(this, selectsBoxConfig);
-        selectsBox.setText(nowDialogue.selects.map((select) => select.text));
-        zone.setInteractive({ useHandCursor: false }).setInteractive(false);
-        selectsBox.texts.forEach((text, i) => {
-          text.setInteractive({ useHandCursor: true }).on("pointerdown", () => {
-            if (isSelects(nowDialogue)) {
-              const nextDialogue =
-                nowDialogue.selects[i].getNextDialogue(dialoguies);
-              rendering(nextDialogue);
-            }
-            selectsBox.destroy();
+        if (isSelects(nowDialogue)) {
+          const selectsBox = new SelectsBox(this, selectsBoxConfig);
+          selectsBox.setText(nowDialogue.selects.map((select) => select.text));
+          zone.disableInteractive();
+          selectsBox.texts.forEach((text, i) => {
+            text
+              .setInteractive({ useHandCursor: true })
+              .on("pointerdown", () => {
+                if (isSelects(nowDialogue)) {
+                  nowDialogue.selects[i].upScore;
+                  const nextDialogue =
+                    nowDialogue.selects[i].getNextDialogue(dialoguies);
+                  rendering(nextDialogue);
+                }
+                selectsBox.destroy();
+              });
           });
-        });
-        this.add.existing(selectsBox).setDepth(2);
+          this.add.existing(selectsBox).setDepth(2);
+        }
+        dialogBox.setIsRead(false);
+      } else {
+        dialogBox.skipText();
       }
     });
+
     if (isNomal(nowDialogue)) {
       dialogBox.setText(nowDialogue.text);
-      dialogBox.setActorNameText(nowDialogue.auther.name);
+      if (nowDialogue.auther.name != "") {
+        dialogBox.setActorNameText(nowDialogue.auther.name);
+      } else {
+        dialogBox.clearActorNameText;
+      }
       nowRigft = this.add.image(
         width - 200,
         height + 100,

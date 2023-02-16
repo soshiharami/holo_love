@@ -19,6 +19,7 @@ export class DialogBox extends Phaser.GameObjects.Container {
 
   private actorNameBox: RoundRectangle;
   private actorNameText: Phaser.GameObjects.Text;
+  private isRead: boolean = false;
 
   private padding: number;
 
@@ -100,14 +101,10 @@ export class DialogBox extends Phaser.GameObjects.Container {
     this.add(this.actorNameText); // Containerへの追加
 
     this.padding = padding;
+  }
 
-    const dialogSpeed = 3;
-    this.scene.time.addEvent({
-      delay: 150 - dialogSpeed * 30,
-      callback: this._animateText,
-      callbackScope: this,
-      loop: true,
-    });
+  public getIsRead() {
+    return this.isRead;
   }
 
   // 会話テキストのセット
@@ -118,12 +115,33 @@ export class DialogBox extends Phaser.GameObjects.Container {
     this.add(this.box);
   }
 
+  public skipText() {
+    console.log(this.text.text + this.tmpText);
+    this.text.setText(this.text.text + this.tmpText);
+    this.tmpText = "";
+    this.isRead = true;
+  }
+
+  public setIsRead(isRead: boolean) {
+    this.isRead = isRead;
+  }
+
   private _animateText = () => {
     if (this.tmpText) {
       this.text.setText(this.text.text + this.tmpText[0]);
       this.tmpText = this.tmpText.slice(1);
+    } else {
+      this.isRead = true;
     }
   };
+
+  private dialogSpeed = 3;
+  private readEvent = this.scene.time.addEvent({
+    delay: 150 - this.dialogSpeed * 30,
+    callback: this._animateText,
+    callbackScope: this,
+    loop: true,
+  });
 
   // 名前テキストのセット
   public setActorNameText(name: string) {

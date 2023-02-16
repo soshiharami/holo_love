@@ -22,6 +22,9 @@ export class LoadingScene extends Phaser.Scene {
     this.add.text(width / 2, height / 2 + 60, "Loading...").setOrigin(0.5);
 
     // アセットをロード（一度ロードしたアセットは他のシーンでも使用可）
+    //
+    this.load.image("lamy", "assets/lamy.png");
+    this.load.image("train", "assets/train.jpg");
     this.load.image("street", "assets/street.png");
     this.load.image("okayu", "assets/okayu.png");
     this.load.image("korone", "assets/korone.png");

@@ -1,6 +1,10 @@
 import { Scene } from "../class/Scene";
 import { Chapter } from "../class/Chapter";
-import { NomalDialogue } from "../class/Dialogue";
+import {
+  NomalDialogue,
+  SelectDialogue,
+  SelectsDialogue,
+} from "../class/Dialogue";
 import { Story } from "./story";
 
 export class chapter1 {
@@ -62,9 +66,85 @@ export class chapter1 {
           8,
         ),
       ]),
-      new Scene(3, 4, "train", []),
-      new Scene(4, 5, "school-enter", []),
-      new Scene(5, 6, "school-gym", []),
+      new Scene(3, 4, "train", [
+        new NomalDialogue(
+          8,
+          "10分後",
+          this.story.characters.s,
+          this.story.characters.n.stylies.sad,
+          9,
+        ),
+        new NomalDialogue(
+          9,
+          "ふ～… なんとか間に合った…",
+          this.story.characters.s,
+          this.story.characters.n.stylies.sad,
+          10,
+        ),
+        new NomalDialogue(
+          10,
+          "ってうわ！これ電車逆方向か！？",
+          this.story.characters.s,
+          this.story.characters.n.stylies.sad,
+          11,
+        ),
+        new NomalDialogue(
+          11,
+          "あ、あのぅ... \n その制服、ホロライブ学園の学生さんですか？",
+          this.story.characters.r,
+          this.story.characters.r.stylies.sad,
+          12,
+        ),
+        new SelectsDialogue(12, this.story.characters.s, [
+          new SelectDialogue("そうです！", 13, this.story.characters.r, 2),
+          new SelectDialogue(
+            "え、あ、はい。。",
+            13,
+            this.story.characters.r,
+            1,
+          ),
+          new SelectDialogue("違います", 15, this.story.characters.r, -1),
+        ]),
+        new NomalDialogue(
+          13,
+          "やっぱり！",
+          this.story.characters.r,
+          this.story.characters.r.stylies.sad,
+          14,
+        ),
+        new NomalDialogue(
+          14,
+          "それならこの電車であってますよ！",
+          this.story.characters.r,
+          this.story.characters.r.stylies.sad,
+          16,
+        ),
+        new NomalDialogue(
+          15,
+          "ごめんなさい。\n勘違いでした...\n忘れてください！",
+          this.story.characters.r,
+          this.story.characters.r.stylies.sad,
+          16,
+        ),
+      ]),
+      new Scene(4, 5, "school-enter", [
+        new NomalDialogue(
+          9,
+          "うわあああやっべええええ",
+          this.story.characters.s,
+          this.story.characters.n.stylies.sad,
+          4,
+        ),
+      ]),
+      new Scene(5, 6, "school-gym", [
+        new NomalDialogue(
+          10,
+          "うわあああやっべええええ",
+          this.story.characters.s,
+          this.story.characters.n.stylies.sad,
+          4,
+        ),
+      ]),
     ],
     0,
   );

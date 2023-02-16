@@ -53,8 +53,25 @@ export class SelectDialogue {
     private _text: string,
     private _nextDialogueId: number,
     private _toTalk1: Character,
+    private _score: number,
     private _toTalk2?: Character,
+    private _score2?: number,
   ) {}
+
+  public upScore() {
+    this._toTalk1.score = this._toTalk1.score + this.score;
+    if (this.toTalk2 && this.score2) {
+      this.toTalk2.score = this.toTalk2.score + this.score2;
+    }
+  }
+
+  get score(): number {
+    return this._score;
+  }
+
+  get score2(): number | undefined {
+    return this._score2;
+  }
 
   get text(): string {
     return this._text;

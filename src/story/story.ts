@@ -26,7 +26,7 @@ export class Story {
       4,
       "雪花ラミィ",
       0x000000,
-      new Stylies({ image: "", sound: "" }),
+      new Stylies({ image: "lamy", sound: "" }),
     ),
     k: new Character(
       5,
